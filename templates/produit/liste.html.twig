@@ -1,0 +1,42 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Produits{% endblock %}
+
+{% block body %}
+    <div class="container col-md-6">
+        <div class="card">
+            <div class="card-header">Liste des produits</div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Libelle</th>
+                        <th>Quantite en stock</th>
+                        <th>Editer</th>
+                        <th>Supprimer</th>
+                    </tr>
+                    {% for p in produits %}
+                        <tr>
+                            <td>{{ p.id }}</td>
+                            <td>{{ p.libelle }}</td>
+                            <td>{{ p.qtStock }}</td>
+                            <td><a class="btn btn-dark" href="{{ path('edit_produit',{'id':p.id} ) }}"><i class="fa fa-edit"></i></a></td>
+                            <td><a class="btn btn-danger" href="{{ path('delete_produit',{'id':p.id} ) }}"><i class="fa fa-trash"></i></a></td>
+                        </tr>
+                    {%endfor%}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container col-md-6">
+        <div class="card">
+            <div class="card-header">Formulaire de gestion des produits</div>
+            <div class="card-body">
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
